@@ -9,7 +9,10 @@ app:
 
 # test functions
 test:
-	python src/tests/tests.py
+	python tests/tests.py
+
+pytst:
+	pytest tests/tests.py
 
 # Clear cache
 clear:

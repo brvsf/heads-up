@@ -1,6 +1,5 @@
 import os
 
-
 # Enviroment variables
 OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
 SLACK_BOT_TOKEN = os.environ['SLACK_BOT_TOKEN']
@@ -48,3 +47,21 @@ HARD_INT = [
     "Gina Lollobrigida", "Ludwig van Beethoven", "Gertrude Stein", "Haruki Murakami",
     "Kurt Vonnegut", "J.R.R. Tolkien", "Claude Monet", "Agatha Christie", "Annie Leibovitz"
 ]
+
+OPTIONS_PT = [
+    'Atores', 'Musicos', 'Pintores', 'Cientistas', 'Personagens'
+]
+
+OPTIONS_EN = [
+    'Actors', 'Musicians', 'Painters','Scientists', 'Characters'
+]
+
+# Mapping dicts
+difficulty_mapping = {
+        'Easy': EASY,
+        'Fácil': EASY,
+        'Medium': MEDIUM,
+        'Médio': MEDIUM,
+        'Hard': HARD_INT,
+        'Difícil': HARD_BR,
+    }
