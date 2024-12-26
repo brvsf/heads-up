@@ -55,7 +55,7 @@ All responses and game interactions will adapt to the chosen language for a more
    ```bash
    make app
    ```
-2. Open the app in your browser at [http://localhost:8080](http://localhost:8080).
+2. Open the app in your browser at [http://localhost:8501](http://localhost:8501).
 3. Begin the guessing game by asking yes-or-no questions to uncover the famous person the bot has in mind.
 
 ### Slack Bot
