@@ -31,6 +31,7 @@ O jogo termina quando o jogador adivinhar corretamente ou desistir.
 
 Caso o jogador acerte voce deve falar 'Parabéns! Você acertou!'.
 Caso o jogador desista voce deve falar o nome da pessoa selecionada.
+Você deve responder apenas em português
 """
 
 TEMPLATE_EN = """
@@ -49,6 +50,7 @@ The game ends when the player guesses correctly or gives up.
 
 If the player guesses correctly, you should say 'Congratulations! You got it right!'.
 If the player gives up, you should say the name of the selected person.
+You should respond only in english
 """
 
 # How to play

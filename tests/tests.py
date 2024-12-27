@@ -28,11 +28,13 @@ class TestStreamlitSession:
         expected_state = {
             'language': '',
             'difficulty': '',
+            'conversation_chain' : None,
             'categories': [],
             'messages': []
         }
         assert st.session_state['language'] == expected_state['language']
         assert st.session_state['difficulty'] == expected_state['difficulty']
+        assert st.session_state['conversation_chain'] == expected_state['conversation_chain']
         assert st.session_state['categories'] == expected_state['categories']
         assert st.session_state['messages'] == expected_state['messages']
 
@@ -42,11 +44,13 @@ class TestStreamlitSession:
     def test_reset_session_state() -> None:
         st.session_state['language'] = 'English'
         st.session_state['difficulty'] = 'Medium'
+        st.session_state["conversation_chain"] = 'Something'
         st.session_state['categories'] = ['Sports']
         st.session_state['messages'] = ['Hello']
         expected_state = {
             'language': '',
             'difficulty': '',
+            'conversation_chain': None,
             'categories': [],
             'messages': []
         }

@@ -1,6 +1,6 @@
 import streamlit as st
-from src.package.utils import StreamlitUI, StreamlitSession, TemplateFormat
 from src.package.llm import LLMIntegration
+from src.package.utils import StreamlitUI, StreamlitSession, TemplateFormat
 
 
 def main():
@@ -8,14 +8,15 @@ def main():
     if not st.session_state['categories'] and not st.session_state['difficulty']:
         StreamlitUI.options(language='Portuguese')
 
-    divider = "-" * 100
     with st.sidebar:
+        st.header("Menu")
+
         if st.button("🔧 Opções"):
             StreamlitUI.options(language="Portuguese")
-            divider
+
+
         if st.button("🕹️ Como jogar"):
             StreamlitUI.how_to_play(language="Portuguese")
-            divider
 
         if st.button("💬 Trocar idioma"):
             StreamlitSession.reset_session_state()
@@ -31,6 +32,7 @@ def main():
     StreamlitSession.session_conversation_chain(client, prompt= formated_prompt)
 
     conversation_chain = st.session_state["conversation_chain"]
+
 
     # Show message history
     for message in st.session_state["messages"]:
