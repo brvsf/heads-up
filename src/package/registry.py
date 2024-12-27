@@ -56,12 +56,46 @@ OPTIONS_EN = [
     'Actors', 'Musicians', 'Painters','Scientists', 'Characters'
 ]
 
+# Initial prompts
+TEMPLATE_PT = """
+Você está participando de um jogo chamado 'Heads Up'.
+Seu papel é ajudar o jogador a adivinhar a pessoa em que você está pensando.
+A pessoa em questão deve estar dentro das seguintes categorias: {categories}
+O nível de dificuldade deve ser: {difficulty}
+O jogador fará perguntas de sim ou não para tentar adivinhar.
+
+Responda apenas com:
+
+'Sim'
+'Não'
+'Pergunta inválida' (se a pergunta não puder ser respondida com "Sim" ou "Não").
+O jogo termina quando o jogador adivinhar corretamente ou desistir.
+"""
+
+TEMPLATE_EN = """ You are participating in a game called 'Heads Up'.
+Your role is to help the player guess the person you are thinking of.
+The person in question must belong to the following categories: {categories}.
+The difficulty level should be: {difficulty}. The player will ask yes or no questions to try to guess.
+
+Respond only with:
+
+'Yes'
+'No'
+'Invalid question' (if the question cannot be answered with "Yes" or "No").
+The game ends when the player guesses correctly or gives up.
+"""
+
 # Mapping dicts
 difficulty_mapping = {
-        'Easy': EASY,
-        'Fácil': EASY,
-        'Medium': MEDIUM,
-        'Médio': MEDIUM,
-        'Hard': HARD_INT,
-        'Difícil': HARD_BR,
-    }
+    'Easy': EASY,
+    'Fácil': EASY,
+    'Medium': MEDIUM,
+    'Médio': MEDIUM,
+    'Hard': HARD_INT,
+    'Difícil': HARD_BR,
+}
+
+template_mapping = {
+    'Português' : TEMPLATE_PT,
+    'English' : TEMPLATE_EN
+}

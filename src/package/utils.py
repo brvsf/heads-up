@@ -1,5 +1,5 @@
 import streamlit as st
-from src.package.registry import OPTIONS_PT, OPTIONS_EN, difficulty_mapping
+from src.package.registry import OPTIONS_PT, OPTIONS_EN, difficulty_mapping, template_mapping
 
 class ValueMapper:
 
@@ -8,6 +8,10 @@ class ValueMapper:
         """"""
         return difficulty_mapping.get(difficulty, [])
 
+    @classmethod
+    def template_mapper(cls, language : str) -> str:
+        """"""
+        return template_mapping.get(language, '')
 
 class StreamlitSession:
 
@@ -17,6 +21,14 @@ class StreamlitSession:
         st.session_state.setdefault('language', '')
         st.session_state.setdefault('difficulty', '')
         st.session_state.setdefault('categories', [])
+        st.session_state.setdefault('messages', [])
+
+    @classmethod
+    def reset_session_state(cls) -> None:
+        st.session_state['language'] = ''
+        st.session_state['difficulty'] = ''
+        st.session_state['categories'] = []
+        st.session_state['messages'] = []
 
 class StreamlitUI:
 
