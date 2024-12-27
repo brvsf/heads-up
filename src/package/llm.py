@@ -1,11 +1,13 @@
 from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
+from langchain.chains import ConversationChain
+from langchain.memory import ConversationBufferMemory
 import langchain_core
 
 from src.package.registry import OPENAI_API_KEY
 
 
-class LlmIntegration:
+class LLMIntegration:
 
     @classmethod
     def model(cls, model : str = "gpt-3.5-turbo"):
@@ -22,10 +24,8 @@ class LlmIntegration:
         return PromptTemplate(categories=categories, template=template)
 
     @classmethod
-    def get_response(
-        cls,
-        prompt : langchain_core.prompts.prompt.PromptTemplate,
-        categories : list,
-        difficulty : str) -> str:
-        categories_str = ", ".join(categories)
-        return prompt.format(categories=categories_str, difficulty=difficulty)
+    def setup_conversation_chain(cls, model, prompt : str):
+        memory = ConversationBufferMemory(return_messages=True)
+        memory.chat_memory.add_user_message(prompt)
+        conversation_chain = ConversationChain(llm=model, memory=memory)
+        return conversation_chain

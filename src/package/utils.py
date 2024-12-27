@@ -1,12 +1,8 @@
 import streamlit as st
-from src.package.registry import OPTIONS_PT, OPTIONS_EN, difficulty_mapping, template_mapping
+from src.package.llm import LLMIntegration
+from src.package.registry import OPTIONS_PT, OPTIONS_EN, TEMPLATE_PT, TEMPLATE_EN, template_mapping
 
 class ValueMapper:
-
-    @classmethod
-    def difficulty_mapper(cls, difficulty : str) -> list:
-        """"""
-        return difficulty_mapping.get(difficulty, [])
 
     @classmethod
     def template_mapper(cls, language : str) -> str:
@@ -20,6 +16,7 @@ class StreamlitSession:
         """"""
         st.session_state.setdefault('language', '')
         st.session_state.setdefault('difficulty', '')
+        st.session_state.setdefault('conversation_chain', None)
         st.session_state.setdefault('categories', [])
         st.session_state.setdefault('messages', [])
 
@@ -27,8 +24,14 @@ class StreamlitSession:
     def reset_session_state(cls) -> None:
         st.session_state['language'] = ''
         st.session_state['difficulty'] = ''
+        st.session_state["conversation_chain"] = None
         st.session_state['categories'] = []
         st.session_state['messages'] = []
+
+    @classmethod
+    def session_conversation_chain(cls, model, prompt: str):
+        if st.session_state["conversation_chain"] is None:
+             st.session_state["conversation_chain"] = LLMIntegration.setup_conversation_chain(model, prompt)
 
 class StreamlitUI:
 
@@ -48,3 +51,13 @@ class StreamlitUI:
 
         if st.button("Concluir"):
             st.rerun()
+
+class TemplateFormat:
+
+    @classmethod
+    def format_pt(cls, categories : list, difficulty : str) -> str:
+        return TEMPLATE_PT.format(categories=", ".join(categories), difficulty=difficulty)
+
+    @classmethod
+    def format_en(cls, categories : list, difficulty : str) -> str:
+        return TEMPLATE_EN.format(categories=", ".join(categories), difficulty=difficulty)
