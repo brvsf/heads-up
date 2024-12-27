@@ -8,10 +8,16 @@ def main():
     if not st.session_state['categories'] and not st.session_state['difficulty']:
         StreamlitUI.options(language='Portuguese')
 
+    divider = "-" * 100
     with st.sidebar:
-        if st.button("Opções"):
+        if st.button("🔧 Opções"):
             StreamlitUI.options(language="Portuguese")
-        if st.button("Trocar idioma"):
+            divider
+        if st.button("🕹️ Como jogar"):
+            StreamlitUI.how_to_play(language="Portuguese")
+            divider
+
+        if st.button("💬 Trocar idioma"):
             StreamlitSession.reset_session_state()
             st.rerun()
 
@@ -25,29 +31,29 @@ def main():
     StreamlitSession.session_conversation_chain(client, prompt= formated_prompt)
 
     conversation_chain = st.session_state["conversation_chain"]
-    # Exibe histórico de mensagens
+
+    # Show message history
     for message in st.session_state["messages"]:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
-    # Captura a entrada do usuário
+    # Capture user input
     if user_message := st.chat_input("Comece a adivinhar"):
         # Adiciona a mensagem do usuário ao histórico
         st.session_state["messages"].append({"role": "user", "content": user_message})
 
-        # Processa a mensagem com o LangChain
+        # Process message with langchain
+        ai_response = conversation_chain.run(input=user_message)
 
-        assistant_response = conversation_chain.run(input=user_message)
-
-        # Exibe a mensagem do usuário
+        # Shows user messages
         st.chat_message("user").markdown(user_message)
 
-        # Exibe a resposta do assistente
-        with st.chat_message("assistant"):
-            st.markdown(assistant_response)
+        # Show GuessMaster messages
+        with st.chat_message("ai"):
+            st.markdown(ai_response)
 
-        # Adiciona a resposta do assistente ao histórico
-        st.session_state["messages"].append({"role": "assistant", "content": assistant_response})
+        # Adds new messages to the message history
+        st.session_state["messages"].append({"role": "ai", "content": ai_response})
 
 
 if __name__ == "__main__":
