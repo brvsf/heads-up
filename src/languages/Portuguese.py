@@ -22,7 +22,7 @@ def main():
             st.rerun()
 
     # Model configuration
-    client = LLMIntegration.model(model="gpt-3.5-turbo") # gpt-4 / gpt-3.5-turbo
+    client = LLMIntegration.model(model="gpt-4") # gpt-4 / gpt-3.5-turbo
     formated_prompt = TemplateFormat.format_pt(
         st.session_state['categories'],
         st.session_state['difficulty']
