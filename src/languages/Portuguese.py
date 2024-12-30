@@ -14,7 +14,6 @@ def main():
         if st.button("🔧 Opções"):
             StreamlitUI.options(language="Portuguese")
 
-
         if st.button("🕹️ Como jogar"):
             StreamlitUI.how_to_play(language="Portuguese")
 
