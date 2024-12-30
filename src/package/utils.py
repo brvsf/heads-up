@@ -1,6 +1,7 @@
 import streamlit as st
 from src.package.llm import LLMIntegration
-from src.package.registry import OPTIONS_PT, OPTIONS_EN, TEMPLATE_PT, TEMPLATE_EN, template_mapping
+from src.package.registry import OPTIONS_PT, OPTIONS_EN, TEMPLATE_PT,\
+    TEMPLATE_EN, HOW_TO_PLAY_PT, HOW_TO_PLAY_EN, template_mapping
 
 class ValueMapper:
 
@@ -35,9 +36,8 @@ class StreamlitSession:
 
 class StreamlitUI:
 
-    @classmethod
     @st.dialog("Options")
-    def options(cls, language: str) -> None:
+    def options(language: str) -> None:
         """"""
         if language == 'Portuguese':
             st.session_state['difficulty'] = st.selectbox(label="Dificuldade: ", options=['Facil', 'Médio', 'Dificil'])
@@ -51,6 +51,14 @@ class StreamlitUI:
 
         if st.button("Concluir"):
             st.rerun()
+
+    @st.dialog("How to play")
+    def how_to_play(language: str) -> None:
+        if language == 'Portuguese':
+            st.markdown(HOW_TO_PLAY_PT)
+        if language == 'English':
+            st.markdown(HOW_TO_PLAY_EN)
+
 
 class TemplateFormat:
 

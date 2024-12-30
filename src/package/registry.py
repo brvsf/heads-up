@@ -26,24 +26,31 @@ Responda apenas com:
 
 'Sim'
 'Não'
-'Pergunta inválida' (se a pergunta não puder ser respondida com "Sim" ou "Não").
+'Pergunta deve ser de sim ou não.' (se a pergunta não puder ser respondida com "Sim" ou "Não").
 O jogo termina quando o jogador adivinhar corretamente ou desistir.
 
 Caso o jogador acerte voce deve falar 'Parabéns! Você acertou!'.
 Caso o jogador desista voce deve falar o nome da pessoa selecionada.
+Você deve responder apenas em português
 """
 
-TEMPLATE_EN = """ You are participating in a game called 'Heads Up'.
+TEMPLATE_EN = """
+You are participating in a game called 'Heads Up'.
 Your role is to help the player guess the person you are thinking of.
-The person in question must belong to the following categories: {categories}.
-The difficulty level should be: {difficulty}. The player will ask yes or no questions to try to guess.
+The person in question must belong to the following categories: {categories} as their main form of fame.
+The difficulty level should be: {difficulty}. The difficulty relates to how famous the person is.
+The player will ask yes or no questions to try to guess.
 
 Respond only with:
 
 'Yes'
 'No'
-'Invalid question' (if the question cannot be answered with "Yes" or "No").
+"It should be a 'yes' or 'no' question." (if the question cannot be answered with "Yes" or "No").
 The game ends when the player guesses correctly or gives up.
+
+If the player guesses correctly, you should say 'Congratulations! You got it right!'.
+If the player gives up, you should say the name of the selected person.
+You should respond only in english
 """
 
 # How to play
@@ -56,7 +63,7 @@ O objetivo do jogo é adivinhar o nome de uma pessoa famosa ou personagem que es
 
 ## Regras:
 1. **Preparação**: O jogador escolhe uma categoria e uma dificuldade para adivinhar uma pessoa ou personagem famoso.
-2. **Jogabilidade**: O jogadordeve fazer perguntas ao GuessMaster para descobrir quem é a figura.
+2. **Jogabilidade**: O jogador deve fazer perguntas ao GuessMaster para descobrir quem é a figura.
 3. **Respostas**: GuessMaster responderá apenas com sim ou não.
 
 ## Dicas:
@@ -64,6 +71,21 @@ O objetivo do jogo é adivinhar o nome de uma pessoa famosa ou personagem que es
 - Use perguntas sobre características físicas, profissões ou períodos históricos.
 """
 
+HOW_TO_PLAY_EN = """
+# How to Play Heads-Up
+
+## Objective:
+The objective of the game is to guess the name of a famous person or character that is on the player's head by asking questions that can be answered with "yes" or "no".
+
+## Rules:
+1. **Preparation**: The player chooses a category and difficulty to guess a famous person or character.
+2. **Gameplay**: The player must ask questions to the GuessMaster to figure out who the character is.
+3. **Answers**: The GuessMaster will only respond with "yes" or "no".
+
+## Tips:
+- Ask broad questions at the beginning to quickly narrow down the options.
+- Use questions about physical traits, professions, or historical periods.
+"""
 
 template_mapping = {
     'Português' : TEMPLATE_PT,
