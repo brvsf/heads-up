@@ -17,6 +17,7 @@ class StreamlitSession:
         """"""
         st.session_state.setdefault('language', '')
         st.session_state.setdefault('difficulty', '')
+        st.session_state.setdefault('prompt', '')
         st.session_state.setdefault('conversation_chain', None)
         st.session_state.setdefault('categories', [])
         st.session_state.setdefault('messages', [])
@@ -25,13 +26,14 @@ class StreamlitSession:
     def reset_session_state(cls) -> None:
         st.session_state['language'] = ''
         st.session_state['difficulty'] = ''
+        st.session_state['prompt'] = ''
         st.session_state["conversation_chain"] = None
         st.session_state['categories'] = []
         st.session_state['messages'] = []
 
     @classmethod
     def session_conversation_chain(cls, model, prompt: str):
-        if st.session_state["conversation_chain"] is None:
+        if  st.session_state["conversation_chain"] is None:
              st.session_state["conversation_chain"] = LLMIntegration.setup_conversation_chain(model, prompt)
 
 class StreamlitUI:
@@ -50,6 +52,10 @@ class StreamlitUI:
             st.session_state['categories'] = st.multiselect(label="Categorias: ", options=OPTIONS_EN, default=OPTIONS_EN[0])
 
         if st.button("Concluir"):
+            st.session_state['prompt'] = TemplateFormat.format_pt(
+            st.session_state['categories'],
+            st.session_state['difficulty']
+        )
             st.rerun()
 
     @st.dialog("How to play")

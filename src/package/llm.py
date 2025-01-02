@@ -29,3 +29,9 @@ class LLMIntegration:
         memory.chat_memory.add_user_message(prompt)
         conversation_chain = ConversationChain(llm=model, memory=memory)
         return conversation_chain
+
+    @classmethod
+    def update_prompt(cls, conversation_chain, new_prompt: str):
+        memory = conversation_chain.memory
+        memory.chat_memory.messages = []
+        memory.chat_memory.add_user_message(new_prompt)
