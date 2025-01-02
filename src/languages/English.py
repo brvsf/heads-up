@@ -25,7 +25,7 @@ def main():
             st.rerun()
 
     # Model configuration
-    client = LLMIntegration.model(model="gpt-3.5-turbo") # gpt-4 / gpt-3.5-turbo
+    client = LLMIntegration.model(model="gpt-4") # gpt-4 / gpt-3.5-turbo
 
     if st.session_state['prompt']:
         StreamlitSession.session_conversation_chain(client, prompt=st.session_state['prompt'])
