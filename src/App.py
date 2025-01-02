@@ -8,8 +8,20 @@ def main():
         url_path="Home"
     )
 
+    about_us_pt = st.Page(
+        "AboutUsPT.py",
+        title="About Us PT",
+        url_path="AboutUsPT"
+    )
+
+    about_us_en = st.Page(
+        "AboutUsEN.py",
+        title="About Us EN",
+        url_path="AboutUsEN"
+    )
+
     pg = st.navigation([
-        game
+        game, about_us_pt, about_us_en
     ], position='hidden')
 
     pg.run()

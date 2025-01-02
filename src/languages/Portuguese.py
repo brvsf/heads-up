@@ -17,6 +17,9 @@ def main():
         if st.button("🕹️ Como jogar"):
             StreamlitUI.how_to_play(language="Portuguese")
 
+        if st.button("ℹ️ Sobre o projeto"):
+            st.switch_page("AboutUsPT.py")
+
         if st.button("💬 Trocar idioma"):
             StreamlitSession.reset_session_state()
             st.rerun()
@@ -37,6 +40,10 @@ def main():
     for message in st.session_state["messages"]:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
+
+    # Prompt nao atualiza com mudanças de categoria/dificuldade
+    st.markdown(st.session_state['conversation_chain'])
+    st.markdown(st.session_state['categories'])
 
     # Capture user input
     if user_message := st.chat_input("Comece a adivinhar"):

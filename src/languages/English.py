@@ -18,6 +18,9 @@ def main():
         if st.button("🕹️ How to play"):
             StreamlitUI.how_to_play(language="English")
 
+        if st.button("ℹ️ About the project"):
+            st.switch_page("AboutUsEN.py")
+
         if st.button("💬 Change language"):
             StreamlitSession.reset_session_state()
             st.rerun()
