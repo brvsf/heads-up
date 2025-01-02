@@ -29,7 +29,7 @@ def main():
 
     if st.session_state['prompt']:
         StreamlitSession.session_conversation_chain(client, prompt=st.session_state['prompt'])
-        if st.session_state['prompt'] !=st.session_state["conversation_chain"].memory.chat_memory.messages[0].content:
+        if st.session_state['prompt'] != st.session_state["conversation_chain"].memory.chat_memory.messages[0].content:
             LLMIntegration.update_prompt(st.session_state["conversation_chain"], st.session_state['prompt'])
 
     conversation_chain = st.session_state["conversation_chain"]
