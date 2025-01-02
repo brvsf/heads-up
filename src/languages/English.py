@@ -1,6 +1,6 @@
 import streamlit as st
 from src.package.llm import LLMIntegration
-from src.package.utils import StreamlitUI, StreamlitSession, TemplateFormat
+from src.package.utils import StreamlitUI, StreamlitSession
 
 
 def main():
@@ -14,7 +14,6 @@ def main():
         if st.button("🔧 Options"):
             StreamlitUI.options(language="English")
 
-
         if st.button("🕹️ How to play"):
             StreamlitUI.how_to_play(language="English")
 
@@ -26,13 +25,13 @@ def main():
             st.rerun()
 
     # Model configuration
-    client = LLMIntegration.model(model="gpt-4") # gpt-4 / gpt-3.5-turbo
-    formated_prompt = TemplateFormat.format_en(
-        st.session_state['categories'],
-        st.session_state['difficulty']
-    )
+    client = LLMIntegration.model(model="gpt-3.5-turbo") # gpt-4 / gpt-3.5-turbo
 
-    StreamlitSession.session_conversation_chain(client, prompt= formated_prompt)
+    st.markdown(st.session_state['prompt'])
+    if st.session_state['prompt']:
+        StreamlitSession.session_conversation_chain(client, prompt=st.session_state['prompt'])
+        if st.session_state['prompt'] !=st.session_state["conversation_chain"].memory.chat_memory.messages[0].content:
+            LLMIntegration.update_prompt(st.session_state["conversation_chain"], st.session_state['prompt'])
 
     conversation_chain = st.session_state["conversation_chain"]
 

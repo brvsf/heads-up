@@ -14,7 +14,7 @@ class StreamlitSession:
 
     @classmethod
     def load_session_state(cls) -> None:
-        """"""
+        """Create the streamlit session state"""
         st.session_state.setdefault('language', '')
         st.session_state.setdefault('difficulty', '')
         st.session_state.setdefault('prompt', '')
@@ -24,6 +24,7 @@ class StreamlitSession:
 
     @classmethod
     def reset_session_state(cls) -> None:
+        """Reset the streamlit session state to the default values"""
         st.session_state['language'] = ''
         st.session_state['difficulty'] = ''
         st.session_state['prompt'] = ''
@@ -33,6 +34,7 @@ class StreamlitSession:
 
     @classmethod
     def session_conversation_chain(cls, model, prompt: str):
+        """Create the conversation chain as a session state object"""
         if  st.session_state["conversation_chain"] is None:
              st.session_state["conversation_chain"] = LLMIntegration.setup_conversation_chain(model, prompt)
 
@@ -40,22 +42,29 @@ class StreamlitUI:
 
     @st.dialog("Options")
     def options(language: str) -> None:
-        """"""
+        """Shows a streamlit dialog to select game options as difficulty and categories"""
         if language == 'Portuguese':
             st.session_state['difficulty'] = st.selectbox(label="Dificuldade: ", options=['Facil', 'Médio', 'Dificil'])
 
             st.session_state['categories'] = st.multiselect(label="Categorias: ", options=OPTIONS_PT, default=OPTIONS_PT[0])
+
+            st.session_state['prompt'] = TemplateFormat.format_pt(
+            st.session_state['categories'],
+            st.session_state['difficulty']
+            )
 
         elif language == 'English':
             st.session_state['difficulty'] = st.selectbox(label="Dificuldade: ", options=['Easy', 'Medium', 'Hard'])
 
             st.session_state['categories'] = st.multiselect(label="Categorias: ", options=OPTIONS_EN, default=OPTIONS_EN[0])
 
-        if st.button("Concluir"):
-            st.session_state['prompt'] = TemplateFormat.format_pt(
+            st.session_state['prompt'] = TemplateFormat.format_en(
             st.session_state['categories'],
             st.session_state['difficulty']
         )
+
+        if st.button("Concluir"):
+
             st.rerun()
 
     @st.dialog("How to play")
