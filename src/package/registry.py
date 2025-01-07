@@ -7,11 +7,11 @@ SLACK_SIGNING_SECRET = os.environ['SLACK_SIGNING_SECRET']
 
 
 OPTIONS_PT = [
-    'Atores', 'Musicos', 'Pintores', 'Cientistas', 'Personagens'
+    'Atores/Atrizes', 'Musicistas', 'Pintores', 'Cientistas', 'Personagens'
 ]
 
 OPTIONS_EN = [
-    'Actors', 'Musicians', 'Painters','Scientists', 'Characters'
+    'Actors/Actresses', 'Musicians', 'Painters','Scientists', 'Characters'
 ]
 
 # Initial prompts
