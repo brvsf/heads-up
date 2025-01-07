@@ -34,6 +34,13 @@ def main():
 
     conversation_chain = st.session_state["conversation_chain"]
 
+    # Initial bot message
+    with st.chat_message("ai"):
+        st.markdown(
+            f"""Você selecionou a categoria: {', '.join(st.session_state['categories'])}
+            e dificuldade: {st.session_state['difficulty']}
+            \nComece a adivinhar!"""
+            )
     # Show message history
     for message in st.session_state["messages"]:
         with st.chat_message(message["role"]):
