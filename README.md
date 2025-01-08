@@ -71,18 +71,30 @@ All responses and game interactions will adapt to the chosen language for a more
 
 ```
 .
-├── LICENSE                # License file for the project
-├── Makefile               # Build and automation commands
-├── Notebook.ipynb         # Jupyter Notebook for experimentation and prototyping
-├── README.md              # Project documentation
-├── requirements.txt       # Project dependencies
-├── setup.py               # Setup script for installation
-├── src                    # Source code for the application
-│   ├── App.py             # Main application logic
-│   └── __init__.py        # Initialization file for the source module
-└── tests                  # Unit tests for the application
-    ├── __init__.py        # Initialization file for the tests module
-    └── tests.py           # Test cases for the project
+├── LICENSE                   # License file for the project.
+├── Makefile                  # File containing build and automation commands.
+├── README.md                 # Project documentation.
+├── requirements.txt          # List of project dependencies.
+├── setup.py                  # Setup script for package installation.
+├── src                       # Source code for the application.
+│   ├── __init__.py           # Initialization file for the src module.
+│   ├── AboutUsEN.py          # "About Us" page content in English.
+│   ├── AboutUsPT.py          # "About Us" page content in Portuguese.
+│   ├── App.py                # Streamlit main application hub.
+│   ├── HeadsUp.py            # Streamlit page for the game logic.
+│   ├── languages             # Directory for language-specific content.
+│   │   ├── __init__.py       # Initialization file for the languages module.
+│   │   ├── English.py        # Strings and configurations for the English language.
+│   │   ├── Portuguese.py     # Strings and configurations for the Portuguese language.
+│   ├── package               # Core components of the chatbot logic.
+│   │   ├── __init__.py       # Initialization file for the package module.
+│   │   ├── llm.py            # Management of the language model (LLM) interactions.
+│   │   ├── registry.py       # Handles data storage and configuration settings.
+│   │   ├── utils.py          # Helper and utility functions for the application.
+└── tests                     # Directory for test cases.
+    ├── __init__.py           # Initialization file for the tests module.
+    └── tests.py              # Unit tests for application functionality.
+
 ```
 
 ## Customization
