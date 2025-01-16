@@ -48,7 +48,7 @@ def main():
             st.markdown(message["content"])
 
     # Capture user input
-    if user_message := st.chat_input("Start guessing"):
+    if user_message := st.chat_input(st.session_state["chat_label"], disabled=st.session_state["disable_chat"]):
         # Adiciona a mensagem do usuário ao histórico
         st.session_state["messages"].append({"role": "user", "content": user_message})
 
@@ -64,6 +64,11 @@ def main():
 
         # Adds new messages to the message history
         st.session_state["messages"].append({"role": "ai", "content": ai_response})
+
+        if "Congratulations!" in ai_response:
+            st.session_state["disable_chat"] = True
+            st.session_state["chat_label"] = "You already got it right!"
+            st.rerun()
 
 
 

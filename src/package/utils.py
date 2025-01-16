@@ -36,7 +36,8 @@ class StreamlitSession:
         st.session_state.setdefault('categories', [])
         st.session_state.setdefault('messages', [])
         st.session_state.setdefault('disable_chat', False)
-        st.session_state.setdefault('chat_label', "Comece a adivinhar")
+        st.session_state.setdefault('chat_label', "Comece a adivinhar" if st.session_state['language'] == 'Portuguese'\
+            else "Start guessing")
 
     @classmethod
     def reset_session_state(cls) -> None:
