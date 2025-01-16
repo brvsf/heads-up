@@ -5,6 +5,7 @@ from src.package.utils import StreamlitUI, StreamlitSession
 
 def main():
 
+
     if not st.session_state['categories'] and not st.session_state['difficulty']:
         StreamlitUI.options(language='Portuguese')
 
@@ -23,6 +24,7 @@ def main():
         if st.button("💬 Trocar idioma"):
             StreamlitSession.reset_session_state()
             st.rerun()
+
 
     # Model configuration
     client = LLMIntegration.model(model="gpt-4") # gpt-4 / gpt-3.5-turbo
@@ -47,7 +49,7 @@ def main():
             st.markdown(message["content"])
 
     # Capture user input
-    if user_message := st.chat_input("Comece a adivinhar"):
+    if user_message := st.chat_input(st.session_state["chat_label"], disabled=st.session_state["disable_chat"]):
         # Adiciona a mensagem do usuário ao histórico
         st.session_state["messages"].append({"role": "user", "content": user_message})
 
@@ -63,6 +65,12 @@ def main():
 
         # Adds new messages to the message history
         st.session_state["messages"].append({"role": "ai", "content": ai_response})
+
+        if "Parabéns!" in ai_response:
+            st.session_state["disable_chat"] = True
+            st.session_state["chat_label"] = "Você já acertou!"
+            st.rerun()
+
 
 
 if __name__ == "__main__":

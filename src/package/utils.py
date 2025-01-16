@@ -35,6 +35,8 @@ class StreamlitSession:
         st.session_state.setdefault('conversation_chain', None)
         st.session_state.setdefault('categories', [])
         st.session_state.setdefault('messages', [])
+        st.session_state.setdefault('disable_chat', False)
+        st.session_state.setdefault('chat_label', "Comece a adivinhar")
 
     @classmethod
     def reset_session_state(cls) -> None:
@@ -50,6 +52,9 @@ class StreamlitSession:
         st.session_state["conversation_chain"] = None
         st.session_state['categories'] = []
         st.session_state['messages'] = []
+        st.session_state['disable_chat'] = False
+        st.session_state['chat_label'] = ''
+
 
     @classmethod
     def session_conversation_chain(cls, model, prompt: str):
