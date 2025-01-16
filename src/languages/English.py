@@ -24,6 +24,13 @@ def main():
             StreamlitSession.reset_session_state()
             st.rerun()
 
+        if st.session_state["disable_chat"]:
+            if st.button("⏭️ Play again"):
+                # StreamlitSession.reset_session_state()
+                # st.session_state['language'] = 'English'
+                # st.rerun()
+                pass
+
     # Model configuration
     client = LLMIntegration.model(model="gpt-4") # gpt-4 / gpt-3.5-turbo
 
